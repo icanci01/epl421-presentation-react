@@ -1,0 +1,13 @@
+{
+  "name": "react-backend",
+  "version": "0.1.0",
+  "description": "This is the backend! Made for presentation EPL421",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Canciu Ionut - Cristian",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
