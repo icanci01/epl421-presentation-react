@@ -25,13 +25,6 @@ function getFileList(dirname){
     return res;
 }
 
-app.post('/', function (req, res) {
-    res.send('POST request to the homepage');
-  });
-  
-  app.listen(4000, function () {
-    console.log('Example app listening on port 4000!');
-  });
 
 // c.connect({
 //     host: '127.0.0.1',
