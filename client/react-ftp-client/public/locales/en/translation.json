@@ -1,0 +1,12 @@
+{
+    "app_name": "React FTP Client",
+    "sign_in_to_your_account": "Sign in to your FTP account",
+    "hostname": "Hostname",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Submit",
+    "wrong_hostname": "Wrong hostname",
+    "wrong_username": "Wrong username",
+    "wrong_password": "Wrong password",
+    "homepage_welcome": "Welcome to the FTP homepage"
+}
