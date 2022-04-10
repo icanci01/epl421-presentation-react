@@ -7,14 +7,26 @@ function App() {
   const [dataTable, setDataTable] = useState([]);
 
   useEffect(() => {
-    axios('https://jsonplaceholder.typicode.com/users')
-      .then(res => setDataTable(res.data))
-      .catch(err => console.log(err))
+     const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ path: '.' })
+        };
+        console.log("ddd")
+        fetch("/list",requestOptions)
+        .then(response => 
+          response.json().then(data => ({
+              data: data,
+              status: response.status
+          })
+      ).then(res => {
+        setDataTable(res.data)
+      }));
   }, []);
 
   const column = [
-    { heading: 'File Name', value: 'email' },
-    { heading: 'File Type', value: 'name' }
+    { heading: 'File Name', value: 'name' },
+    { heading: 'File Type', value: 'type' }
    
   ]
 
