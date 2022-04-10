@@ -17,28 +17,33 @@ import {
   Text,
   MenuButton,
 } from "@chakra-ui/react";
-import { VscChevronDown, VscChevronUp, VscLinkExternal } from "react-icons/vsc";
+import { VscChevronDown, VscChevronUp } from "react-icons/vsc";
+import {
+  AiOutlineCloudServer,
+  AiOutlineLogout,
+  AiOutlineProfile,
+  AiOutlineSetting
+} from "react-icons/ai";
 
 const Links = ["Upload", "Download", "List Files"];
 
 const NavLink = ({ children }: { children: React.ReactNode }) => (
   <HStack>
-  <Text>
-    <Link
-      px={2}
-      py={2}
-      rounded={"md"}
-      _hover={{
-        paddingLeft: "2rem",
-        textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
-      }}
-      href={"#"}
-    >
-      {children}
-    </Link>
-
-  </Text>
+    <Text>
+      <Link
+        px={3}
+        py={2}
+        rounded={"md"}
+        _hover={{
+          paddingRight: "1rem",
+          textDecoration: "none",
+          bg: useColorModeValue("gray.300", "gray.700"),
+        }}
+        href={"#"}
+      >
+        {children}
+      </Link>
+    </Text>
   </HStack>
 );
 export function NavbarComponent() {
@@ -80,17 +85,24 @@ export function NavbarComponent() {
               </MenuButton>
               <MenuList>
                 <MenuItem>
-                <VscLinkExternal />
+                  <AiOutlineProfile />
                   <NavLink>Profile</NavLink>
                 </MenuItem>
+                <MenuDivider />
                 <MenuItem>
+                  <AiOutlineCloudServer />
                   <NavLink>Active Servers</NavLink>
                 </MenuItem>
+                <MenuDivider />
                 <MenuItem>
+                  <AiOutlineSetting />
                   <NavLink>Settings</NavLink>
                 </MenuItem>
                 <MenuDivider />
-                <MenuItem>Logout</MenuItem>
+                <MenuItem>
+                  <AiOutlineLogout />
+                  <NavLink>Logout</NavLink>
+                </MenuItem>
               </MenuList>
             </Menu>
           </Flex>
@@ -99,9 +111,7 @@ export function NavbarComponent() {
         {isOpen ? (
           <Box pb={5} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-
               {Links.map((link) => (
-                
                 <NavLink key={link}>{link}</NavLink>
               ))}
             </Stack>
