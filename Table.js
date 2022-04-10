@@ -23,12 +23,40 @@ const Table = ({ data, column }) => {
   const TableHeadItem = ({ item }) => <th>{item.heading}</th>
 
     const downloadFile = (rowValue) => {
-        console.log(rowValue)
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ filename: rowValue })
+        };
+    
+        fetch("/download",requestOptions)
+        .then(res => {console.log(res.json())
+        })
+        
+
     }
 
     const changeDir = (rowValue) => {
       path = path +'/' +rowValue
-      console.log(path)
+
+
+       const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ path: path })
+        };
+        console.log("ddd")
+        fetch("/list",requestOptions)
+        .then(response => 
+          response.json().then(data => ({
+              data: data,
+              status: response.status
+          })
+      ).then(res => {
+        console.log(Table.data)
+      }));
+
     }
 
     const goBack = () => {
@@ -39,8 +67,8 @@ const Table = ({ data, column }) => {
   const TableRow = ({ item, column }) => (
     <tr>
       {column.map((columnItem, index) => {
-        if (`${columnItem.value}` === "email") {//For file list
-            if(item[`name`] === "Leanne Graham")//If file download on click
+        if (`${columnItem.value}` === "name") {//For file list
+            if(item[`type`] === "d")//If file download on click
                 return <td  onClick={() => changeDir(item[`${columnItem.value}`])} > {item[`${columnItem.value}`]}  </td>//If folder change directory on click
            
             return <td class = 'tbrows' onClick={() => downloadFile(item[`${columnItem.value}`])} > {item[`${columnItem.value}`]}  </td>
