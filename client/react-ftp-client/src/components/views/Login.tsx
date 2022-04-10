@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Box,
   Button,
+  Checkbox,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -11,6 +12,11 @@ import {
   Heading,
   HStack,
   Input,
+  InputGroup,
+  InputLeftAddon,
+  InputRightAddon,
+  InputRightElement,
+  Link,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -30,7 +36,7 @@ function useLogin() {
       data.append("username", username);
       data.append("password", password);
 
-      return fetch("/api/login", {
+      return fetch("/login", {
         method: "POST",
         body: data,
       })
@@ -67,11 +73,14 @@ export function Login() {
     ),
   });
 
+  const [show, setShow] = React.useState(false);
+  const handleClick = () => setShow(!show);
+
   return (
     <Flex
       direction="column"
       justify="center"
-      py={12}
+      py={10}
       px={{ sm: 4, lg: 8 }}
       minH="100vh"
       bg="blue.200"
@@ -84,9 +93,11 @@ export function Login() {
         border={2}
         borderStyle="solid"
       >
-        <Logo mt={6} mx="auto" w="auto" h="auto"/>
+        
+        <Logo mt={3} mx="auto" w="auto" h="auto" />
+        
         <Heading
-          mt={6}
+          mt={3}
           textAlign="center"
           fontSize="2xl"
           fontWeight="extrabold"
@@ -95,16 +106,17 @@ export function Login() {
           {t("sign_in_to_your_account")}
         </Heading>
         <Box
-          mt={6}
+          mt={4}
           mx={{ sm: "auto" }}
           w={{ sm: "full" }}
           maxW={{ sm: "md" }}
-          py={8}
+          py={5}
           px={{ sm: 10, base: 4 }}
           border={1}
           borderStyle="solid"
           borderColor="gray.200"
         >
+          
           <form
             onSubmit={handleSubmit((values) => {
               return login(values.hostname, values.username, values.password)
@@ -118,48 +130,80 @@ export function Login() {
                 });
             })}
           >
-            <Stack spacing={4}>
+            
+            <Stack spacing={2}>
               <FormControl
                 isInvalid={formState.errors.hostname !== undefined}
                 isDisabled={formState.isSubmitting}
               >
                 <FormLabel htmlFor="hostname">{t("hostname")}</FormLabel>
-                <Input {...register("hostname")} />
+                <InputGroup>
+                  <Input
+                    placeholder={t("enter_hostname")}
+                    {...register("hostname")}
+                  />
+                  <InputRightAddon children=":21" />
+                </InputGroup>
                 <FormErrorMessage>
                   {formState.errors.hostname?.message}
                 </FormErrorMessage>
               </FormControl>
             </Stack>
-            <Stack spacing={4}>
+            <Stack spacing={2}>
               <FormControl
                 isInvalid={formState.errors.username !== undefined}
                 isDisabled={formState.isSubmitting}
               >
                 <FormLabel htmlFor="username">{t("username")}</FormLabel>
-                <Input {...register("username")} autoComplete="username" />
+                <Input
+                  placeholder={t("enter_username")}
+                  {...register("username")}
+                  autoComplete="username"
+                />
                 <FormErrorMessage>
                   {formState.errors.username?.message}
                 </FormErrorMessage>
               </FormControl>
             </Stack>
-            <Stack spacing={4}>
+            <Stack spacing={2}>
               <FormControl
                 isInvalid={formState.errors.password !== undefined}
                 isDisabled={formState.isSubmitting}
               >
                 <FormLabel htmlFor="password">{t("password")}</FormLabel>
-                <Input {...register("password")} type="password" />
+                <InputGroup>
+                  <Input
+                    placeholder={t("enter_password")}
+                    {...register("password")}
+                    type={show ? 'text' : 'password'}
+                  />
+                  <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={handleClick}>
+                    {show ?  t("hide")  : t("show")}
+                  </Button>
+                </InputRightElement>
+                </InputGroup>
                 <FormErrorMessage>
                   {formState.errors.password?.message}
                 </FormErrorMessage>
               </FormControl>
             </Stack>
-            {submissionError && (
-              <Stack spacing={4}>
+            
+            <Stack spacing={4} marginTop={5}>
+              <Stack
+                direction={{ base: "column", sm: "row" }}
+                align={"start"}
+                justify={"space-between"}
+              >
+                <Checkbox>{t("remember_me")}</Checkbox>
+                <Link color={"blue.600"}>{t("reset_credentials")}</Link>
+              </Stack>
+              {submissionError && (
+              <Stack spacing={2} textAlign="center">
                 <Text color="red.500">{submissionError}</Text>
               </Stack>
             )}
-            <Stack spacing={4} marginTop={5}>
+
               <Button
                 colorScheme="blue"
                 isLoading={formState.isSubmitting}

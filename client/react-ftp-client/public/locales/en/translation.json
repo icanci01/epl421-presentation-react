@@ -4,9 +4,17 @@
     "hostname": "Hostname",
     "username": "Username",
     "password": "Password",
+    "hide": "Hide",
+    "show": "Show",
+    "enter_hostname": "Enter hostname (localhost)",
+    "enter_username": "Enter your username",
+    "enter_password": "Enter your password",
     "submit": "Submit",
+    "remember_me": "Remember me",
     "wrong_hostname": "Wrong hostname",
     "wrong_username": "Wrong username",
     "wrong_password": "Wrong password",
-    "homepage_welcome": "Welcome to the FTP homepage"
+    "reset_credentials": "Reset your credentials",
+    "homepage_welcome": "Welcome to the FTP homepage",
+    "loading_content": "Loading content..."
 }
