@@ -13,11 +13,14 @@ app.use(bodyParser.urlencoded({ extended: true }));   // support encoded bodies
 app.use("/login", (req, res) => {
   console.log("Received Request!");
   console.log(req.body);
-  res.send({
+  validUser(req.body) ? res.send({
     token: "test123",
-  });
+  }) : res.send("Failure");
 });
 
+function validUser(req) {
+  return req.username === "test" && req.password === "test";
+}
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
