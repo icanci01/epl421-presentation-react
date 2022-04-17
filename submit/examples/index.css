@@ -1,0 +1,26 @@
+body {
+    background-color: #b35f5f;
+    padding: 10px;
+}
+
+h1 {
+    color: #fff;
+    font-size: 2em;
+    margin: 0;
+}
+
+p {
+    color: #2bff00;
+    font-size: 1em;
+    margin: 0;
+}
+
+img {
+    width: 50%;
+    height: auto;
+}
+
+th {
+    border-bottom: 1px solid #fff;
+}
+
