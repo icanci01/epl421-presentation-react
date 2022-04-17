@@ -1,4 +1,4 @@
-import { Home } from "./views/Dashboard";
+import { Home } from "./views/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Settings from "./views/Settings";
 import Footer from "./Footer";

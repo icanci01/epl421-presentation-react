@@ -2,6 +2,7 @@
 # docker-compose up
 # docker-compose logs
 # docker-compose stop
+# DISCLAIMER: NEEDS CONFIGURATION BASED ON NEEDS
 
 version: '3.7'
 
